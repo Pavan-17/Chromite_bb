@@ -4,4 +4,8 @@
       wr_cache_enable <= c;
     endmethod
     
-    
+# Method to accept the current privilege mode
+
+    method Action ma_curr_priv (Bit#(2) c);
+      wr_priv <= c;
+    endmethod
