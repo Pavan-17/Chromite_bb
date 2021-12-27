@@ -1,5 +1,0 @@
-# This method to check if the cache is enabled or not
-    
-    method Action ma_cache_enable(Bool c);
-      wr_cache_enable <= c;
-    endmethod
