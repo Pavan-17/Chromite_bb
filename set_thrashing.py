@@ -7,7 +7,11 @@ import os
 import random   
 
 class set_thrashing(IPlugin):
-    
+    sets = 64
+    word_size = 8
+    block_size = 8
+    ways = 4
+    fb_size = 9
     
     def _init_(self):
         super()._init_()
