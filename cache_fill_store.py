@@ -1,12 +1,12 @@
 import yapsy.IPlugin  :: * ;
 import ruamel.yaml :: * ;
-import uatg.regex_formats as rf
 import typing :: * ;
+import uatg.regex_formats as rf
 import re
 import os
 import random   
 
-class uatg_cache_hitfb_01(IPlugin):
+class cache_fill_store(IPlugin):
   
     def __init__(self):
 
@@ -35,22 +35,22 @@ class uatg_cache_hitfb_01(IPlugin):
 
         asm='init:\n\tfence\n\tli t0, 501\n\tli t2,32\n\tla t1, rvtest_data\n'
         
-        #fills the cache    
+ 
         asm+='fillc:'
         for i in range(self._cache_size):
             asm+=f'\n\tlw t0, 0(t1)\n\taddi t1, t1, {self._sets*self._block_size*self._word_size}\n'
         
-        #clear the fill buffer before starting to fill it 
+ 
         asm+='clearfb:'
         for i in range(30):
             asm+='\n\tnop\n'
 
-        #fills the fb partially
+
         asm+='fillfb:'
         for i in range(self._fb_size//2):
             asm+='\n\taddi t1, t1, 32\n\tlw t0, 0(t1)\n'
 
-        #creating hits on the fb
+
         asm+='hits:'
         for i in range(self._fb_size//2):
             asm+='\n\tlw t0,0(t1)\n\tsub t1,t1,t2\n'
