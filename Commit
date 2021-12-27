@@ -1,0 +1,4 @@
+ # This method is used to indicate that a particular entry in the store-buffer is ready for commit
+   
+   method ma_commit_store = m_storebuffer.ma_commit_store;
+
