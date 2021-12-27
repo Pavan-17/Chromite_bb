@@ -12,4 +12,6 @@ Tasks to be performed :
 8. Performan 10 IO op
 9. Perform a store-to-load forwarding scenario from the store-buffer
 10. Perform a replacement on all sets.
-11. Check if fence and fence.iwork properly 12. Check if performance counters are correctly incremented. 13. Check to see if we can perform simultaneous lo and cached ops
+11. Check if fence and fence.iwork properly 
+12. Check if performance counters are correctly incremented. 
+13. Check to see if we can perform simultaneous lo and cached ops
