@@ -1,12 +1,12 @@
 import yapsy.IPlugin  :: * ;
 import ruamel.yaml :: * ;
-import uatg.regex_formats as rf
 import typing :: * ;
+import uatg.regex_formats as rf
 import re
 import os
 import random	
 
-class uatg_cache_fillbuffer_01(IPlugin):
+class cache_fill_load(IPlugin):
     
     def __init__(self):
 
@@ -34,7 +34,7 @@ class uatg_cache_fillbuffer_01(IPlugin):
 
         asm='init:\n\tfence\n\tli t0, 501\n\tla t1, rvtest_data\t\n'
         
-        #fills the cache	
+	
         asm+='fillc:'
         for i in range(self._cache_size):
 	        asm+=f'\n\tlw t0, 0(t1)\n\taddi t1, t1, {self._sets*self._block_size*self._word_size}\n'
