@@ -32,8 +32,8 @@ class line_thrashing(IPlugin):
         f.close()
 
         test_report = {
-                "cache_dcache_fill_01_report": {
-                    'Doc': "ASM should have filled the fill buffer of size {0}. This report verifies that.".format(self._fb_size)
+                "cache_fill_load": {
+                    'Doc': "ASM should have filled the buffer of".format(self._fb_size)
                     'Execution status': ''
                     }
                 }
