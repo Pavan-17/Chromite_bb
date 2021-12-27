@@ -1,9 +1,19 @@
-class uatg_cache_dcache_fill(IPlugin):
+import yapsy.IPlugin  :: * ;
+import ruamel.yaml :: * ;
+import typing :: * ;
+import uatg.regex_formats as rf
+import re
+import os
+import random   
+
+
+class line_thrashing(IPlugin):
     sets = 64
     word_size = 8
     block_size = 8
     ways = 4
     fb_size = 9
+
     def __init__(self):
         super().__init__()
         
@@ -28,9 +38,7 @@ class uatg_cache_dcache_fill(IPlugin):
                     }
                 }
 
-    def generate_covergroups(self, config_file):
-        ''
-
+ 
     def generate_asm(self) -> List[Dict[str, Union[Union[str, list], Any]]]:
 
         asm_data = '\nrvtest_data:\n'
