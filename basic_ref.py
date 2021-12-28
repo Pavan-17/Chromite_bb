@@ -39,3 +39,9 @@
     endrule
 
 
+ # Rule: This rule checks the tag rams for a hit.
+                                
+    rule rl_ram_check(!ff_core_request.first.fence && !rg_handling_miss && !rg_performing_replay && !rg_polling_mode && !fb_full );
+ 
+
+
