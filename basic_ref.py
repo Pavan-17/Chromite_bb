@@ -1,0 +1,41 @@
+# Method to accept the current privilege mode
+
+    method Action ma_curr_priv (Bit#(2) c);
+      wr_priv <= c;
+    endmethod
+    
+# This method to check if the cache is enabled or not
+    
+    method Action ma_cache_enable(Bool c);
+      wr_cache_enable <= c;
+    endmethod   
+    
+# This method is used to indicate that a particular entry in the store-buffer is ready for commit
+   
+   method ma_commit_store = m_storebuffer.ma_commit_store;
+   
+# Register when True indicates a fence is in progress and thus will prevent 
+#   taking any new requests from the core
+     
+    Reg#(Bool) rg_fence_stall <- mkReg(False);
+    
+# Register indicates if there was a hit or miss on Fllbuffer
+                                
+    Reg#(RespState) rg_fb_state <- mkReg(None);
+
+
+# Rule: This rule performs the fence operation. This is a single cycle op where all the
+#  valid registers are assigned 0. A fence operation can be triggered only if: the a fence
+#  operation is requested by the core, the fill-buffer is empty and no replay is being performed.
+    
+    rule rl_fence_operation(ff_core_request.first.fence && rg_fence_stall && fb_empty && !rg_performing_replay ) ;
+      `logLevel( icache, 1, $format("[%2d]ICACHE : Fence operation in progress",id))
+      for (Integer i = 0; i< fromInteger(v_sets); i = i + 1) begin
+        v_reg_valid[i] <= 0 ;
+      end
+      rg_fence_stall <= False;
+      ff_core_request.deq;
+      replacement.reset_repl;
+    endrule
+
+
