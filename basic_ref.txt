@@ -15,7 +15,7 @@
    method ma_commit_store = m_storebuffer.ma_commit_store;
    
 # Register when True indicates a fence is in progress and thus will prevent 
-#   taking any new requests from the core
+    taking any new requests from the core
      
     Reg#(Bool) rg_fence_stall <- mkReg(False);
     
@@ -25,8 +25,8 @@
 
 
 # Rule: This rule performs the fence operation. This is a single cycle op where all the
-#  valid registers are assigned 0. A fence operation can be triggered only if: the a fence
-#  operation is requested by the core, the fill-buffer is empty and no replay is being performed.
+    valid registers are assigned 0. A fence operation can be triggered only if: the a fence
+    operation is requested by the core, the fill-buffer is empty and no replay is being performed.
     
     rule rl_fence_operation(ff_core_request.first.fence && rg_fence_stall && fb_empty && !rg_performing_replay ) ;
       `logLevel( icache, 1, $format("[%2d]ICACHE : Fence operation in progress",id))
