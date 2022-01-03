@@ -38,7 +38,7 @@ class cache_fill_store(IPlugin):
  
         asm+='fillc:'
         for i in range(self._cache_size):
-            asm+=f'\n\tlw t0, 0(t1)\n\taddi t1, t1, {self._sets*self._block_size*self._word_size}\n'
+            asm+=f'\n\tlw t0, 0(t1)\n\taddi t1, t1, {self._block_size}\n'
         
  
         asm+='clearfb:'
